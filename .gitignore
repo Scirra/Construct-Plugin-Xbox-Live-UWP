@@ -1,0 +1,7 @@
+.vs
+*.c3addon
+*.vcxproj.user
+/wrapper-extension/x64/
+/construct-plugin/*.exp
+/construct-plugin/*.lib
+/construct-plugin/*.pdb

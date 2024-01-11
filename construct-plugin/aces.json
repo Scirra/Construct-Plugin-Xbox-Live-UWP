@@ -1,0 +1,315 @@
+﻿{
+	"$schema": "../aces.schema.json",
+
+	"xbox": {
+		"conditions": [
+			{
+				"id": "is-available",
+				"scriptName": "IsAvailable"
+			}, {
+				"id": "is-creators-program",
+				"scriptName": "IsCreatorsProgram"
+			}
+		],
+		"actions": [],
+		"expressions": [
+			{
+				"id": "error-message",
+				"expressionName": "ErrorMessage",
+				"returnType": "string"
+			}, {
+				"id": "sandbox",
+				"expressionName": "Sandbox",
+				"returnType": "string"
+			}, {
+				"id": "title-id",
+				"expressionName": "TitleID",
+				"returnType": "number"
+			}, {
+				"id": "scid",
+				"expressionName": "SCID",
+				"returnType": "string"
+			}
+		]
+	},
+	"user": {
+		"conditions": [
+			{
+				"id": "is-signed-in",
+				"scriptName": "IsSignedIn"
+			}, {
+				"id": "on-sign-in-success",
+				"scriptName": "OnSignInSuccess",
+				"isTrigger": true
+			}, {
+				"id": "on-sign-in-error",
+				"scriptName": "OnSignInError",
+				"isTrigger": true
+			}, {
+				"id": "on-sign-in-silently-success",
+				"scriptName": "OnSignInSilentlySuccess",
+				"isTrigger": true
+			}, {
+				"id": "on-sign-in-silently-error",
+				"scriptName": "OnSignInSilentlyError",
+				"isTrigger": true
+			}, {
+				"id": "on-sign-out-completed",
+				"scriptName": "OnSignOutCompleted",
+				"isTrigger": true
+			}
+		],
+		"actions": [
+			{
+				"id": "sign-in",
+				"scriptName": "SignIn",
+				"isAsync": true
+			}, {
+				"id": "sign-in-silently",
+				"scriptName": "SignInSilently",
+				"isAsync": true
+			}
+		],
+		"expressions": [
+			{
+				"id": "gamer-tag",
+				"expressionName": "GamerTag",
+				"returnType": "string"
+			}, {
+				"id": "age-group",
+				"expressionName": "AgeGroup",
+				"returnType": "string"
+			}, {
+				"id": "privileges",
+				"expressionName": "Privileges",
+				"returnType": "string"
+			}, {
+				"id": "xbox-user-id",
+				"expressionName": "XboxUserId",
+				"returnType": "string"
+			}, {
+				"id": "sign-in-status",
+				"expressionName": "SignInStatus",
+				"returnType": "string"
+			}
+		]
+	},
+	"presence": {
+		"conditions": [
+			{
+				"id": "on-set-presence-success",
+				"scriptName": "OnSetPresenceSuccess",
+				"isTrigger": true
+			}, {
+				"id": "on-set-presence-failed",
+				"scriptName": "OnSetPresenceFailed",
+				"isTrigger": true
+			}
+		],
+		"actions": [
+			{
+				"id": "set-presence",
+				"scriptName": "SetPresence",
+				"isAsync": true,
+				"params": [
+					{ "id": "active-in-title", "type": "boolean" }
+				]
+			}
+		]
+	},
+	"achievements": {
+		"conditions": [
+			{
+				"id": "on-update-achievement-success",
+				"scriptName": "OnUpdateAchievementSuccess",
+				"isTrigger": true,
+				"params": [{ "id": "achievement-id", "type": "string" }]
+			}, {
+				"id": "on-update-achievement-failed",
+				"scriptName": "OnUpdateAchievementFailed",
+				"isTrigger": true,
+				"params": [{ "id": "achievement-id", "type": "string" }]
+			}, {
+				"id": "on-update-any-achievement-success",
+				"scriptName": "OnUpdateAnyAchievementSuccess",
+				"isTrigger": true
+			}, {
+				"id": "on-update-any-achievement-failed",
+				"scriptName": "OnUpdateAnyAchievementFailed",
+				"isTrigger": true
+			}
+		],
+		"actions": [
+			{
+				"id": "update-achievement",
+				"scriptName": "UpdateAchievement",
+				"isAsync": true,
+				"params": [
+					{ "id": "achievement-id", "type": "string" },
+					{ "id": "percent-complete", "type": "number", "initialValue": "100" }
+				]
+			}
+		],
+		"expressions": [
+			{
+				"id": "achievement-id",
+				"expressionName": "AchievementID",
+				"returnType": "string"
+			}
+		]
+	},
+	"title-storage": {
+		"conditions": [
+			{
+				"id": "on-title-storage-operation-success",
+				"scriptName": "OnTitleStorageOperationSuccess",
+				"isTrigger": true,
+				"params": [{
+					"id": "storage-tag",
+					"type": "string"
+				}]
+			}, {
+				"id": "on-title-storage-operation-failed",
+				"scriptName": "OnTitleStorageOperationFailed",
+				"isTrigger": true,
+				"params": [{
+					"id": "storage-tag",
+					"type": "string"
+				}]
+			}, {
+				"id": "on-any-title-storage-operation-success",
+				"scriptName": "OnAnyTitleStorageOperationSuccess",
+				"isTrigger": true
+			}, {
+				"id": "on-any-title-storage-operation-failed",
+				"scriptName": "OnAnyTitleStorageOperationFailed",
+				"isTrigger": true
+			}
+		],
+		"actions": [
+			{
+				"id": "title-storage-upload-binary",
+				"scriptName": "TitleStorageUploadBinary",
+				"isAsync": true,
+				"params": [{
+					"id": "storage-type",
+					"type": "combo",
+					"items": ["trusted-platform-storage", "global-storage", "universal"],
+					"initialValue": "universal"
+				}, {
+					"id": "path",
+					"type": "string"
+				}, {
+					"id": "binary-data",
+					"type": "object",
+					"allowedPluginIds": ["BinaryData"]
+				}, {
+					"id": "blob-type",
+					"type": "combo",
+					"items": ["binary", "json", "config"]
+				}, {
+					"id": "storage-tag",
+					"type": "string"
+				}]
+			}, {
+				"id": "title-storage-upload-text",
+				"scriptName": "TitleStorageUploadText",
+				"isAsync": true,
+				"params": [{
+					"id": "storage-type",
+					"type": "combo",
+					"items": ["trusted-platform-storage", "global-storage", "universal"],
+					"initialValue": "universal"
+				}, {
+					"id": "path",
+					"type": "string"
+				}, {
+					"id": "data",
+					"type": "string"
+				}, {
+					"id": "blob-type",
+					"type": "combo",
+					"items": ["binary", "json", "config"]
+				}, {
+					"id": "storage-tag",
+					"type": "string"
+				}]
+			}, {
+				"id": "title-storage-download-binary",
+				"scriptName": "TitleStorageDownloadBinary",
+				"isAsync": true,
+				"params": [{
+					"id": "storage-type",
+					"type": "combo",
+					"items": ["trusted-platform-storage", "global-storage", "universal"],
+					"initialValue": "universal"
+				}, {
+					"id": "path",
+					"type": "string"
+				}, {
+					"id": "binary-data",
+					"type": "object",
+					"allowedPluginIds": ["BinaryData"]
+				}, {
+					"id": "blob-type",
+					"type": "combo",
+					"items": ["binary", "json", "config"]
+				}, {
+					"id": "storage-tag",
+					"type": "string"
+				}]
+			}, {
+				"id": "title-storage-download-text",
+				"scriptName": "TitleStorageDownloadText",
+				"isAsync": true,
+				"params": [{
+					"id": "storage-type",
+					"type": "combo",
+					"items": ["trusted-platform-storage", "global-storage", "universal"],
+					"initialValue": "universal"
+				}, {
+					"id": "path",
+					"type": "string"
+				}, {
+					"id": "blob-type",
+					"type": "combo",
+					"items": ["binary", "json", "config"]
+				}, {
+					"id": "storage-tag",
+					"type": "string"
+				}]
+			}, {
+				"id": "title-storage-delete",
+				"scriptName": "TitleStorageDelete",
+				"isAsync": true,
+				"params": [{
+					"id": "storage-type",
+					"type": "combo",
+					"items": ["trusted-platform-storage", "global-storage", "universal"],
+					"initialValue": "universal"
+				}, {
+					"id": "path",
+					"type": "string"
+				}, {
+					"id": "blob-type",
+					"type": "combo",
+					"items": ["binary", "json", "config"]
+				}, {
+					"id": "storage-tag",
+					"type": "string"
+				}]
+			}
+		],
+		"expressions": [
+			{
+				"id": "storage-tag",
+				"expressionName": "StorageTag",
+				"returnType": "string"
+			}, {
+				"id": "download-text",
+				"expressionName": "DownloadText",
+				"returnType": "string"
+			}
+		]
+	}
+}

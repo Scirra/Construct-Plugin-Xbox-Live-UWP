@@ -1,0 +1,417 @@
+﻿{
+	"$schema": "../../plugin.lang.schema.json",
+	
+	"languageTag": "en-US",
+	"fileDescription": "Strings for the Xbox wrapper extension.",
+	"text": {
+		"plugins": {
+			"xbox_uwp": {
+				"name": "Xbox UWP",
+				"description": "Provides Xbox integration when exporting for Xbox UWP.",
+				"help-url": "https://www.construct.net",
+				"properties": {
+					"title-id": {
+						"name": "Title ID",
+						"desc": "The Title ID for this project as provided by the Microsoft Partner Center."
+					},
+					"scid": {
+						"name": "SCID",
+						"desc": "The Service Configuration ID (SCID) as provided by the Microsoft Partner Center."
+					},
+					"creators-program": {
+						"name": "Creators title",
+						"desc": "Check when using the Xbox Live Creators Program."
+					}
+				},
+				"aceCategories": {
+					"xbox": "Xbox",
+					"user": "User",
+					"presence": "Presence",
+					"achievements": "Achievements",
+					"title-storage": "Title storage"
+				},
+				"conditions": {
+					"is-available": {
+						"list-name": "Is available",
+						"display-text": "Is available",
+						"description": "True if running in WebView2 with Xbox UWP features available."
+					},
+					"is-creators-program": {
+						"list-name": "Is creators title",
+						"display-text": "Is creators title",
+						"description": "True if the 'Creators title' property is checked."
+					},
+					"is-signed-in": {
+						"list-name": "Is signed in",
+						"display-text": "Is signed in",
+						"description": "True if the user is currently signed in to use Xbox Live services."
+					},
+					"on-sign-in-success": {
+						"list-name": "On sign in success",
+						"display-text": "On sign in success",
+						"description": "Triggered after 'Sign in' when successfully signed in."
+					},
+					"on-sign-in-error": {
+						"list-name": "On sign in error",
+						"display-text": "On sign in error",
+						"description": "Triggered after 'Sign in' when signing in failed."
+					},
+					"on-sign-in-silently-success": {
+						"list-name": "On sign in silently success",
+						"display-text": "On sign in silently success",
+						"description": "Triggered after 'Sign in silently' when successfully signed in."
+					},
+					"on-sign-in-silently-error": {
+						"list-name": "On sign in silently error",
+						"display-text": "On sign in silently error",
+						"description": "Triggered after 'Sign in silently' when signing in failed."
+					},
+					"on-sign-out-completed": {
+						"list-name": "On sign out completed",
+						"display-text": "On sign out completed",
+						"description": "Triggered when user sign out completes."
+					},
+					"on-set-presence-success": {
+						"list-name": "On set presence success",
+						"display-text": "On set presence success",
+						"description": "Triggered after 'Set presence' when set successfully."
+					},
+					"on-set-presence-failed": {
+						"list-name": "On set presence failed",
+						"display-text": "On set presence failed",
+						"description": "Triggered after 'Set presence' when failed to set."
+					},
+					"on-update-achievement-success": {
+						"list-name": "On update achievement success",
+						"display-text": "On update achievement [i]{0}[/i] success",
+						"description": "Triggered after 'Update achievement' when successful for a specific achievent.",
+						"params": {
+							"achievement-id": {
+								"name": "Achievement ID",
+								"desc": "The achievement ID."
+							}
+						}
+					},
+					"on-update-achievement-failed": {
+						"list-name": "On update achievement failed",
+						"display-text": "On update achievement [i]{0}[/i] failed",
+						"description": "Triggered after 'Update achievement' when failed for a specific achievent.",
+						"params": {
+							"achievement-id": {
+								"name": "Achievement ID",
+								"desc": "The achievement ID."
+							}
+						}
+					},
+					"on-update-any-achievement-success": {
+						"list-name": "On update any achievement success",
+						"display-text": "On update any achievement success",
+						"description": "Triggered after 'Update achievement' when successful for any achievent."
+					},
+					"on-update-any-achievement-failed": {
+						"list-name": "On update any achievement failed",
+						"display-text": "On update any achievement failed",
+						"description": "Triggered after 'Update achievement' when failed for any achievent."
+					},
+					"on-title-storage-operation-success": {
+						"list-name": "On operation success",
+						"display-text": "On title storage operation [i]{0}[/i] success",
+						"description": "Triggered after a title storage operation completed successfully.",
+						"params": {
+							"storage-tag": {
+								"name": "Storage tag",
+								"desc": "Tag of the associated title storage operation."
+							}
+						}
+					},
+					"on-title-storage-operation-failed": {
+						"list-name": "On operation failed",
+						"display-text": "On title storage operation [i]{0}[/i] failed",
+						"description": "Triggered after a title storage operation failed.",
+						"params": {
+							"storage-tag": {
+								"name": "Storage tag",
+								"desc": "Tag of the associated title storage operation."
+							}
+						}
+					},
+					"on-any-title-storage-operation-success": {
+						"list-name": "On any operation success",
+						"display-text": "On any title storage operation success",
+						"description": "Triggered after any title storage operation completed successfully."
+					},
+					"on-any-title-storage-operation-failed": {
+						"list-name": "On any operation failed",
+						"display-text": "On any title storage operation failed",
+						"description": "Triggered after any title storage operation failed."
+					}
+				},
+				"actions": {
+					"sign-in": {
+						"list-name": "Sign in",
+						"display-text": "Sign in",
+						"description": "Prompt the user to sign in to their account via user interface."
+					},
+					"sign-in-silently": {
+						"list-name": "Sign in silently",
+						"display-text": "Sign in silently",
+						"description": "Attempt to sign in the user automatically without showing any user interface."
+					},
+					"set-presence": {
+						"list-name": "Set presence",
+						"display-text": "Set presence to active in title [b]{0}[/b]",
+						"description": "Set the user's active in title status.",
+						"params": {
+							"active-in-title": {
+								"name": "Active in title",
+								"desc": "Whether the user is currently active in the title."
+							}
+						}
+					},
+					"update-achievement": {
+						"list-name": "Update achievement",
+						"display-text": "Update achievement [b]{0}[/b] to [i]{1}[/i] percent complete",
+						"description": "Unlock an achievement or update its progress.",
+						"params": {
+							"achievement-id": {
+								"name": "Achievement ID",
+								"desc": "The achievement ID."
+							},
+							"percent-complete": {
+								"name": "Percent complete",
+								"desc": "A number from 0-100 indicating the percentage complete."
+							}
+						}
+					},
+					"title-storage-upload-binary": {
+						"list-name": "Upload binary",
+						"display-text": "Upload binary {2} to title storage [i]{0}[/i] path [i]{1}[/i] type [i]{3}[/i] (storage tag [i]{4}[/i])",
+						"description": "Upload the contents of a Binary Data object to title storage.",
+						"params": {
+							"storage-type": {
+								"name": "Storage type",
+								"desc": "The storage type to upload to.",
+								"items": {
+									"trusted-platform-storage": "Trusted platform storage",
+									"global-storage": "Global storage",
+									"universal": "Universal"
+								}
+							},
+							"path": {
+								"name": "Path",
+								"desc": "The file path to upload to."
+							},
+							"binary-data": {
+								"name": "Binary data",
+								"desc": "The binary data object to upload the contents of."
+							},
+							"blob-type": {
+								"name": "Blob type",
+								"desc": "The type of the data being uploaded.",
+								"items": {
+									"binary": "binary",
+									"json": "JSON",
+									"config": "config"
+								}
+							},
+							"storage-tag": {
+								"name": "Storage tag",
+								"desc": "An optional tag to identify this title storage operation."
+							}
+						}
+					},
+					"title-storage-upload-text": {
+						"list-name": "Upload text",
+						"display-text": "Upload text [i]{2}[/i] to title storage [i]{0}[/i] path [i]{1}[/i] type [i]{3}[/i] (storage tag [i]{4}[/i])",
+						"description": "Upload text to title storage.",
+						"params": {
+							"storage-type": {
+								"name": "Storage type",
+								"desc": "The storage type to upload to.",
+								"items": {
+									"trusted-platform-storage": "Trusted platform storage",
+									"global-storage": "Global storage",
+									"universal": "Universal"
+								}
+							},
+							"path": {
+								"name": "Path",
+								"desc": "The file path to upload to."
+							},
+							"data": {
+								"name": "Data",
+								"desc": "The text to upload."
+							},
+							"blob-type": {
+								"name": "Blob type",
+								"desc": "The type of the data being uploaded.",
+								"items": {
+									"binary": "binary",
+									"json": "JSON",
+									"config": "config"
+								}
+							},
+							"storage-tag": {
+								"name": "Storage tag",
+								"desc": "An optional tag to identify this title storage operation."
+							}
+						}
+					},
+					"title-storage-download-binary": {
+						"list-name": "Download binary",
+						"display-text": "Download binary to {2} from title storage [i]{0}[/i] path [i]{1}[/i] type [i]{3}[/i] (storage tag [i]{4}[/i])",
+						"description": "Download binary data from title storage.",
+						"params": {
+							"storage-type": {
+								"name": "Storage type",
+								"desc": "The storage type to download from.",
+								"items": {
+									"trusted-platform-storage": "Trusted platform storage",
+									"global-storage": "Global storage",
+									"universal": "Universal"
+								}
+							},
+							"path": {
+								"name": "Path",
+								"desc": "The file path to download from."
+							},
+							"binary-data": {
+								"name": "Binary data",
+								"desc": "The binary data object to store the downloaded data."
+							},
+							"blob-type": {
+								"name": "Blob type",
+								"desc": "The type of the data that was originally uploaded.",
+								"items": {
+									"binary": "binary",
+									"json": "JSON",
+									"config": "config"
+								}
+							},
+							"storage-tag": {
+								"name": "Storage tag",
+								"desc": "An optional tag to identify this title storage operation."
+							}
+						}
+					},
+					"title-storage-download-text": {
+						"list-name": "Download text",
+						"display-text": "Download text from title storage [i]{0}[/i] path [i]{1}[/i] type [i]{2}[/i] (storage tag [i]{3}[/i])",
+						"description": "Download text from title storage.",
+						"params": {
+							"storage-type": {
+								"name": "Storage type",
+								"desc": "The storage type to download from.",
+								"items": {
+									"trusted-platform-storage": "Trusted platform storage",
+									"global-storage": "Global storage",
+									"universal": "Universal"
+								}
+							},
+							"path": {
+								"name": "Path",
+								"desc": "The file path to download from."
+							},
+							"blob-type": {
+								"name": "Blob type",
+								"desc": "The type of the data that was originally uploaded.",
+								"items": {
+									"binary": "binary",
+									"json": "JSON",
+									"config": "config"
+								}
+							},
+							"storage-tag": {
+								"name": "Storage tag",
+								"desc": "An optional tag to identify this title storage operation."
+							}
+						}
+					},
+					"title-storage-delete": {
+						"list-name": "Delete",
+						"display-text": "Delete title storage [i]{0}[/i] path [i]{1}[/i] type [i]{2}[/i] (storage tag [i]{3}[/i])",
+						"description": "Delete an item from title storage.",
+						"params": {
+							"storage-type": {
+								"name": "Storage type",
+								"desc": "The storage type to delete from.",
+								"items": {
+									"trusted-platform-storage": "Trusted platform storage",
+									"global-storage": "Global storage",
+									"universal": "Universal"
+								}
+							},
+							"path": {
+								"name": "Path",
+								"desc": "The file path delete."
+							},
+							"blob-type": {
+								"name": "Blob type",
+								"desc": "The type of the data being uploaded.",
+								"items": {
+									"binary": "binary",
+									"json": "JSON",
+									"config": "config"
+								}
+							},
+							"storage-tag": {
+								"name": "Storage tag",
+								"desc": "An optional tag to identify this title storage operation."
+							}
+						}
+					}
+				},
+				"expressions": {
+					"error-message": {
+						"description": "In an error trigger, the error message if available.",
+						"translated-name": "ErrorMessage"
+					},
+					"sandbox": {
+						"description": "The currently configured sandbox such as \"XDKS.1\". It is empty until you sign in.",
+						"translated-name": "Sandbox"
+					},
+					"title-id": {
+						"description": "The title ID set in the object's properties.",
+						"translated-name": "TitleID"
+					},
+					"scid": {
+						"description": "The Service Configuration ID (SCID) set in the object's properties.",
+						"translated-name": "SCID"
+					},
+					"sign-in-status": {
+						"description": "After attempting sign in, one of \"success\", \"user-interaction-required\" or \"user-cancel\".",
+						"translated-name": "SignInStatus"
+					},
+					"gamer-tag": {
+						"description": "The public gamertag associated with the user.",
+						"translated-name": "GamerTag"
+					},
+					"age-group": {
+						"description": "The age group of the user.",
+						"translated-name": "AgeGroup"
+					},
+					"privileges": {
+						"description": "The privileges of the user.",
+						"translated-name": "Privileges"
+					},
+					"xbox-user-id": {
+						"description": "A unique ID associated with this user.",
+						"translated-name": "XboxUserId"
+					},
+					"achievement-id": {
+						"description": "In an achievement trigger, the associated achievement ID.",
+						"translated-name": "AchievementID"
+					},
+					"storage-tag": {
+						"description": "In a title storage trigger, the associated storage tag.",
+						"translated-name": "StorageTag"
+					},
+					"download-text": {
+						"description": "The downloaded text after successfully downloading from title storage.",
+						"translated-name": "DownloadText"
+					}
+				}
+			}
+		}
+	}
+}
