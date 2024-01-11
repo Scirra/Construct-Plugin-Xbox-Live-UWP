@@ -32,7 +32,7 @@ Use [developer mode](https://www.construct.net/en/make-games/manuals/addon-sdk/g
 
 A sample Construct project is provided in this repository which is just a technical test of the plugin features. (Be sure to update the Xbox Live UWP plugin properties for your app.)
 
-Note to successfully test Xbox Live features you will need to have correctly configured an application in the Microsoft Partner Center and associated your exported Visual Studio project with the application. For more information refer to the Xbox Live UWP plugin documentation.
+Note to successfully test Xbox Live features you will need to have correctly configured an application in the Microsoft Partner Center and associated your exported Visual Studio project with the application. For more information refer to the [Xbox Live UWP plugin documentation](https://www.construct.net/en/make-games/addons/1204/xbox-live-uwp/documentation).
 
 ## Distributing
 
