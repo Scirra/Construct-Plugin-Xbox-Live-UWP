@@ -2,6 +2,9 @@
 *.c3addon
 *.vcxproj.user
 /wrapper-extension/x64/
+/wrapper-extension/packages/
 /construct-plugin/*.exp
 /construct-plugin/*.lib
 /construct-plugin/*.pdb
+/construct-plugin/*.pri
+/construct-plugin/*.ilk
