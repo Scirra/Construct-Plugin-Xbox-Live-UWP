@@ -1,6 +1,6 @@
 # Construct Xbox Live UWP plugin
 
-This repository contains code for the Xbox Live UWP Construct plugin, and its associated wrapper extension (a DLL which integrates the Xbox Live API). This allows integrating Construct projects with Xbox Live when using the Xbox UWP export option. The features it covers includes:
+This repository contains code for the [Xbox Live UWP Construct plugin](https://www.construct.net/en/make-games/addons/1204/xbox-live-uwp), and its associated wrapper extension (a DLL which integrates the Xbox Live API). This allows integrating Construct projects with Xbox Live when using the Xbox UWP export option. The features it covers includes:
 
 - Sign in, and information about the signed in user
 - Presence
@@ -30,7 +30,7 @@ Note that Visual Studio 2017 is only necessary to build the wrapper extension DL
 
 Use [developer mode](https://www.construct.net/en/make-games/manuals/addon-sdk/guide/using-developer-mode) for a more convenient way to test the Construct plugin during development.
 
-A sample Construct project is provided in this repository which is just a technical test of the plugin features.
+A sample Construct project is provided in this repository which is just a technical test of the plugin features. (Be sure to update the Xbox Live UWP plugin properties for your app.)
 
 Note to successfully test Xbox Live features you will need to have correctly configured an application in the Microsoft Partner Center and associated your exported Visual Studio project with the application. For more information refer to the Xbox Live UWP plugin documentation.
 
