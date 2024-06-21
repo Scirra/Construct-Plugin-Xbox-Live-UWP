@@ -277,13 +277,13 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends globalThis.ISDKIns
 
 		if (isOk)
 		{
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnAnyTitleStorageOperationSuccess);
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnTitleStorageOperationSuccess);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnAnyTitleStorageOperationSuccess);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnTitleStorageOperationSuccess);
 		}
 		else
 		{
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnAnyTitleStorageOperationFailed);
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnTitleStorageOperationFailed);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnAnyTitleStorageOperationFailed);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnTitleStorageOperationFailed);
 		}
 
 		this._storageTag = "";
