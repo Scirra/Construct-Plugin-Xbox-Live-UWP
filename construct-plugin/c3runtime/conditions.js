@@ -1,21 +1,21 @@
 
-const C3 = self.C3;
+const C3 = globalThis.C3;
 
 C3.Plugins.Xbox_UWP.Cnds =
 {
 	IsAvailable()
 	{
-		return this._IsAvailable();
+		return this.isAvailable;
 	},
 
 	IsCreatorsProgram()
 	{
-		return this._IsCreatorsProgram();
+		return this.isCreatorsProgram;
 	},
 
 	IsSignedIn()
 	{
-		return this._IsSignedIn();
+		return this.isSignedIn;
 	},
 
 	OnSignInSuccess()

@@ -1,16 +1,15 @@
 
-const C3 = self.C3;
+const C3 = globalThis.C3;
 
-C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
+C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends globalThis.ISDKInstanceBase
 {
-	constructor(inst, properties)
+	constructor()
 	{
-		super(inst);
-
 		// Set the wrapper extension component ID to match the one set in the DLL.
 		// Then verify the wrapper extension is available.
-		this.SetWrapperExtensionComponentId("scirra-xbox-uwp");
-		this._isAvailable = this.IsWrapperExtensionAvailable();
+		super({ wrapperComponentId: "scirra-xbox-uwp" });
+
+		this._isAvailable = this._isWrapperExtensionAvailable();
 
 		// General properties
 		this._errorMessage = "";
@@ -40,6 +39,7 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
 
 		//////////////////////////////////
 		// Read properties and initialize
+		const properties = this._getInitProperties();
 		if (properties)
 		{
 			this._titleId = properties[0];
@@ -48,70 +48,70 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
 		}
 
 		// Listen for sign out event sent from wrapper extension.
-		this.AddWrapperExtensionMessageHandler("on-sign-out-completed", e => this._OnSignOutCompleted(e));
+		this._addWrapperExtensionMessageHandler("on-sign-out-completed", e => this._onSignOutCompleted(e));
 
 		// When wrapper extension is available, initialize it on startup.
 		if (this._isAvailable)
 		{
-			this._runtime.AddLoadPromise(this._Init());
+			this.runtime.addLoadPromise(this._init());
 		}
 	}
 
-	async _Init()
+	async _init()
 	{
 		// Send init message to wrapper extension and wait for completion
-		const result = await this.SendWrapperExtensionMessageAsync("init");
+		const result = await this._sendWrapperExtensionMessageAsync("init");
 
 		// Get sandbox if available on startup
 		this._sandbox = result["sandbox"];
 	}
 	
-	Release()
+	_release()
 	{
-		super.Release();
+		super._release();
 	}
 
-	_IsAvailable()
+	get isAvailable()
 	{
 		return this._isAvailable;
 	}
 
-	_GetTitleId()
+	get titleId()
 	{
 		return this._titleId;
 	}
 
-	_GetSCID()
+	get scid()
 	{
 		return this._scid;
 	}
 
-	_IsCreatorsProgram()
+	get isCreatorsProgram()
 	{
 		return this._isCreatorsProgram;
 	}
 
-	_GetSandbox()
+	get sandbox()
 	{
 		return this._sandbox;
 	}
 
-	_IsSignedIn()
+	get isSignedIn()
 	{
 		return this._isSignedIn;
 	}
 
-	_GetErrorMessage()
+	get errorMessage()
 	{
 		return this._errorMessage;
 	}
 
-	_GetSignInStatus()
+	get signInStatus()
 	{
 		return this._signInStatus;
 	}
 
-	_SetSignInStatusFromEnum(e)
+	_setSignInStatusFromEnum(e)
 	{
 		// The wrapper extension sends the sign in status as the value of the xbox::services::system::sign_in_status
 		// enum converted to a number. These values are converted to a string for better convenience.
@@ -135,35 +135,35 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
 		}
 	}
 
-	_GetGamerTag()
+	get gamerTag()
 	{
 		return this._userGamerTag;
 	}
 
-	_GetAgeGroup()
+	get ageGroup()
 	{
 		return this._userAgeGroup;
 	}
 
-	_GetPrivileges()
+	get priviliges()
 	{
 		return this._userPrivileges;
 	}
 
-	_GetXboxUserId()
+	get xboxUserId()
 	{
 		return this._xboxUserId;
 	}
 
-	async _SignIn()
+	async signIn()
 	{
-		if (!this._IsAvailable())
+		if (!this._isAvailable)
 			return;
 
-		const result = await this.SendWrapperExtensionMessageAsync("sign-in");
+		const result = await this._sendWrapperExtensionMessageAsync("sign-in");
 
 		// Both success and failure cases pass the sign in status.
-		this._SetSignInStatusFromEnum(result["status"]);
+		this._setSignInStatusFromEnum(result["status"]);
 
 		if (result["isOk"])
 		{
@@ -175,25 +175,25 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
 			this._xboxUserId = result["xboxUserId"];
 			this._sandbox = result["sandbox"];		// sandbox is re-sent as may only be available when signed in
 
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInSuccess);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInSuccess);
 		}
 		else
 		{
 			this._errorMessage = result["errorMessage"];
 
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInError);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInError);
 		}
 	}
 
-	async _SignInSilently()
+	async signInSilently()
 	{
-		if (!this._IsAvailable())
+		if (!this._isAvailable)
 			return;
 
-		const result = await this.SendWrapperExtensionMessageAsync("sign-in-silently");
+		const result = await this._sendWrapperExtensionMessageAsync("sign-in-silently");
 
 		// Both success and failure cases pass the sign in status.
-		this._SetSignInStatusFromEnum(result["status"]);
+		this._setSignInStatusFromEnum(result["status"]);
 
 		// This is handled the same as a standard sign in.
 		if (result["isOk"])
@@ -205,17 +205,17 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
 			this._xboxUserId = result["xboxUserId"];
 			this._sandbox = result["sandbox"];
 
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInSilentlySuccess);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInSilentlySuccess);
 		}
 		else
 		{
 			this._errorMessage = result["errorMessage"];
 
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInSilentlyError);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignInSilentlyError);
 		}
 	}
 
-	_OnSignOutCompleted(e)
+	_onSignOutCompleted(e)
 	{
 		// Clear all sign in status
 		this._isSignedIn = false;
@@ -225,66 +225,52 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
 		this._userPrivileges = "";
 		this._xboxUserId = "";
 		
-		this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignOutCompleted);
+		this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnSignOutCompleted);
 	}
 
-	async _SetPresence(isActiveInTitle)
+	async setPresence(isActiveInTitle)
 	{
-		if (!this._IsAvailable())
+		if (!this._isAvailable)
 			return;
 
 		// Message wrapper extension and wait for result
-		const result = await this.SendWrapperExtensionMessageAsync("set-presence", [isActiveInTitle]);
+		const result = await this._sendWrapperExtensionMessageAsync("set-presence", [isActiveInTitle]);
 
 		if (result["isOk"])
 		{
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnSetPresenceSuccess);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnSetPresenceSuccess);
 		}
 		else
 		{
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnSetPresenceFailed);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnSetPresenceFailed);
 		}
 	}
 
-	async _UpdateAchievement(achievementId, percentComplete)
+	async updateAchievement(achievementId, percentComplete)
 	{
-		if (!this._IsAvailable())
+		if (!this._isAvailable)
 			return;
 		
 		// Message wrapper extension and wait for result
-		const result = await this.SendWrapperExtensionMessageAsync("update-achievement", [achievementId, percentComplete]);
+		const result = await this._sendWrapperExtensionMessageAsync("update-achievement", [achievementId, percentComplete]);
 
 		// Set achievement ID for triggers
 		this._achievementId = achievementId;
 
 		if (result["isOk"])
 		{
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAnyAchievementSuccess);
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAchievementSuccess);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAnyAchievementSuccess);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAchievementSuccess);
 		}
 		else
 		{
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAnyAchievementFailed);
-			this.Trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAchievementFailed);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAnyAchievementFailed);
+			this._trigger(C3.Plugins.Xbox_UWP.Cnds.OnUpdateAchievementFailed);
 		}
 	}
 
 	// For binary upload/download actions
-	_GetBinaryDataSdkInstance(objectClass)
-    {
-        if (!objectClass)
-            return null;
-            
-        const target = objectClass.GetFirstPicked(this._inst);
-
-        if (!target)
-            return null;
-
-        return target.GetSdkInstance();
-	}
-
-	// For binary upload/download actions
-	_TriggerTitleStorageOperationResult(isOk, storageTag)
+	_triggerTitleStorageOperationResult(isOk, storageTag)
 	{
 		// Set storage tag for triggers
 		this._storageTag = storageTag;
@@ -303,47 +289,15 @@ C3.Plugins.Xbox_UWP.Instance = class Xbox_UWPInstance extends C3.SDKInstanceBase
 		this._storageTag = "";
 	}
 
-	SaveToJson()
+	_saveToJson()
 	{
 		return {
 			// data to be saved for savegames
 		};
 	}
 	
-	LoadFromJson(o)
+	_loadFromJson(o)
 	{
 		// load state for savegames
 	}
-
-	GetScriptInterfaceClass()
-	{
-		return self.IXboxUWPInstance;
-	}
-};
-
-// Script interface. Use a WeakMap to safely hide the internal implementation details from the
-// caller using the script interface.
-const map = new WeakMap();
-
-self.IXboxUWPInstance = class IXboxUWPInstance extends self.IInstance {
-	constructor()
-	{
-		super();
-		
-		// Map by SDK instance
-		map.set(this, self.IInstance._GetInitInst().GetSdkInstance());
-	}
-
-	/*
-	// Example setter/getter property on script interface
-	set testProperty(n)
-	{
-		map.get(this)._SetTestProperty(n);
-	}
-
-	get testProperty()
-	{
-		return map.get(this)._GetTestProperty();
-	}
-	*/
 };

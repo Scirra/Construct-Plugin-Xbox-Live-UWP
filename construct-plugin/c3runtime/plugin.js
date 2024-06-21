@@ -1,15 +1,10 @@
 
-const C3 = self.C3;
+const C3 = globalThis.C3;
 
-C3.Plugins.Xbox_UWP = class Xbox_UWPPlugin extends C3.SDKPluginBase
+C3.Plugins.Xbox_UWP = class Xbox_UWPPlugin extends globalThis.ISDKPluginBase
 {
-	constructor(opts)
+	constructor()
 	{
-		super(opts);
-	}
-	
-	Release()
-	{
-		super.Release();
+		super();
 	}
 };

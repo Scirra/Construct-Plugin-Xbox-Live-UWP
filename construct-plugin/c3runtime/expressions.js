@@ -1,51 +1,51 @@
 
-const C3 = self.C3;
+const C3 = globalThis.C3;
 
 C3.Plugins.Xbox_UWP.Exps =
 {
     ErrorMessage()
     {
-        return this._GetErrorMessage();
+        return this.errorMessage;
     },
 
     TitleID()
     {
-        return this._GetTitleId()
+        return this.titleId;
     },
 
     SCID()
     {
-        return this._GetSCID();
+        return this.scid;
     },
 
     Sandbox()
     {
-        return this._GetSandbox();
+        return this.sandbox;
     },
 
     SignInStatus()
     {
-        return this._GetSignInStatus();
+        return this.signInStatus;
     },
 
     GamerTag()
     {
-        return this._GetGamerTag();
+        return this.gamerTag;
     },
 
     AgeGroup()
     {
-        return this._GetAgeGroup();
+        return this.ageGroup;
     },
 
     Privileges()
     {
-        return this._GetPrivileges();
+        return this.priviliges;
     },
 
     XboxUserId()
     {
-        return this._GetXboxUserId();
+        return this.xboxUserId;
     },
 
     AchievementID()

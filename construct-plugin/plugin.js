@@ -1,5 +1,5 @@
 
-const SDK = self.SDK;
+const SDK = globalThis.SDK;
 
 ////////////////////////////////////////////
 // The plugin ID is how Construct identifies different kinds of plugins.
@@ -12,7 +12,6 @@ const SDK = self.SDK;
 const PLUGIN_ID = "Xbox_UWP";
 ////////////////////////////////////////////
 
-const PLUGIN_VERSION = "1.0.0.0";
 const PLUGIN_CATEGORY = "platform-specific";
 
 const PLUGIN_CLASS = SDK.Plugins.Xbox_UWP = class Xbox_UWPPlugin extends SDK.IPluginBase
@@ -25,7 +24,6 @@ const PLUGIN_CLASS = SDK.Plugins.Xbox_UWP = class Xbox_UWPPlugin extends SDK.IPl
 		
 		this._info.SetName(self.lang(".name"));
 		this._info.SetDescription(self.lang(".description"));
-		this._info.SetVersion(PLUGIN_VERSION);
 		this._info.SetCategory(PLUGIN_CATEGORY);
 		this._info.SetAuthor("Scirra");
 		this._info.SetHelpUrl(self.lang(".help-url"));
