@@ -8,3 +8,4 @@
 /construct-plugin/*.pdb
 /construct-plugin/*.pri
 /construct-plugin/*.ilk
+/construct-plugin/ts-defs/
