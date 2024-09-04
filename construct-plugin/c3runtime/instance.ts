@@ -72,7 +72,7 @@ class Xbox_UWPInstance extends globalThis.ISDKInstanceBase
 		// When wrapper extension is available, initialize it on startup.
 		if (this._isAvailable)
 		{
-			this.runtime.addLoadPromise(this._init());
+			this.runtime.sdk.addLoadPromise(this._init());
 		}
 	}
 
